@@ -27,14 +27,6 @@ $mahasiswa = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Mahasiswa NIM Genap</title>
-    <style>
-        th, td {
-            text-align: center;
-        }
-        .highlight {
-            background-color: #FFD700;
-        }
-    </style>
 </head>
 <body>
     <h1 style="text-align: center;">Data Nilai Mahasiswa Komputerisasi Akuntansi - 2021</h1>
@@ -46,17 +38,23 @@ $mahasiswa = [
             <th>Jurusan</th>
             <th>Nilai</th>
         </tr>
-        <?php foreach ($mahasiswa as $index => $mhs): ?>
-            <tr>
-                <td><?= $index + 1; ?></td>
-                <td class="<?= $mhs['nim'] === 'D212111016' ? 'highlight' : ''; ?>">
-                    <?= $mhs['nim']; ?>
-                </td>
-                <td><?= $mhs['nama']; ?></td>
-                <td><?= $mhs['jurusan'] . ' (' . $mhs['angkatan'] . ')'; ?></td>
-                <td><?= $mhs['nilai']; ?></td>
-            </tr>
-        <?php endforeach; ?>
+        <!-- Kerjakan di line ini -->
+        <?php
+        $no = 1;
+        foreach ($mahasiswa as $mhs) {
+            // class highlight nim: 'D212111016' nama: 'Seli Pebriani'
+            $highlightClass = $mhs['nim'] === 'D212111016' ? 'style="background-color: Blue;"' : '';
+            
+            echo "<tr $highlightClass>";
+            echo "<td style='text-align: center;'>{$no}</td>"; // Kolom No.
+            echo "<td style='text-align: center;'>{$mhs['nim']}</td>"; // Kolom NIM
+            echo "<td style='text-align: left;'>{$mhs['nama']}</td>"; // Kolom Nama
+            echo "<td style='text-align: left;'>{$mhs['jurusan']} - {$mhs['angkatan']}</td>"; // Kolom Jurusan berisi 'jurusan - angkatan'
+            echo "<td style='text-align: center;'>{$mhs['nilai']}</td>"; // Kolom Nilai
+            echo "</tr>";
+            $no++;
+        }
+        ?>
     </table>
 </body>
 </html>
